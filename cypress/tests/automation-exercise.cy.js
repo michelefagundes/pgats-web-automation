@@ -232,4 +232,19 @@ describe('Automation Exercise Test Suite', () => {
             cy.wrap($el).should('be.visible');
         });
     });
+
+    it('verify subscription in home page', () => {
+        const randomEmail = faker.internet.email();
+    
+        cy.visit('https://automationexercise.com');
+        cy.get(homePage).should('be.visible');
+
+        cy.scrollTo('bottom');
+
+        cy.contains('h2', 'Subscription').should('be.visible');
+
+        cy.get('#susbscribe_email').type(randomEmail);
+        cy.get('#subscribe').click();
+        cy.contains('You have been successfully subscribed!').should('be.visible');
+    });
 });
