@@ -6,4 +6,5 @@ export const registerUserName = '[data-qa="signup-name"]';
 export const registerUserEmail = '[data-qa="signup-email"]';
 export const signUpBtn = '[data-qa="signup-button"]';
 export const enterAccountInfoHeader = 'Enter Account Information';
-export const deleteAccountBtn = 'a[href="/delete_account"]'; 
+export const deleteAccountBtn = 'a[href="/delete_account"]';
+export const logoutBtn = 'a[href="/logout"]';
