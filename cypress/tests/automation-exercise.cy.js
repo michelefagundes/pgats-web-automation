@@ -136,4 +136,21 @@ describe('Automation Exercise Test Suite', () => {
         cy.contains('Account Deleted!').should('be.visible');
         cy.get('[data-qa="continue-button"]').click();
     });
+    it('logout user ', () => {
+        const userName = Cypress.env('USER_NAME'); 
+        const userEmail = Cypress.env('USER_EMAIL');
+        const userPass = Cypress.env('USER_PASSWORD');
+
+        cy.visit('https://automationexercise.com');
+        cy.get(homePage).should('be.visible');
+        cy.get(loginBtn).click();
+        
+        cy.get('[data-qa="login-email"]').type(userEmail); 
+        cy.get('[data-qa="login-password"]').type(userPass); 
+        cy.get('[data-qa="login-button"]').click();
+
+        cy.contains(`Logged in as ${userName}`).should('be.visible');
+        cy.get(logoutBtn).click(); 
+        cy.get(homePage).should('be.visible');    
+    });
 });
