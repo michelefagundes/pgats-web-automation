@@ -199,4 +199,22 @@ describe('Automation Exercise Test Suite', () => {
 
         cy.get(homePage).should('be.visible');
     });
+
+    it('verify products and products details page', () => {
+        cy.visit('https://automationexercise.com');
+        cy.get(homePage).should('be.visible');
+
+        cy.get('a[href="/products"]').click();
+        cy.contains('All Products').should('be.visible');
+        cy.get('.features_items').should('be.visible');
+        cy.get('a[href="/product_details/1"]').click();
+
+        cy.get('.product-information').should('be.visible');
+        cy.get('.product-information h2').should('have.text', 'Blue Top');
+        cy.get('.product-information p').contains('Category: Women > Tops').should('be.visible');
+        cy.get('.product-information span span').should('have.text', 'Rs. 500');
+        cy.get('.product-information p').contains('Availability: In Stock').should('be.visible');
+        cy.get('.product-information p').contains('Condition: New').should('be.visible');
+        cy.get('.product-information p').contains('Brand: Polo').should('be.visible');
+    });
 });
