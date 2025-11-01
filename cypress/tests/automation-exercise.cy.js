@@ -169,4 +169,34 @@ describe('Automation Exercise Test Suite', () => {
         cy.get(signUpBtn).click();
         cy.contains(emailAlreadyExistsHint).should('be.visible'); 
     });
+
+    it('validating contact us form', () => {
+        const randomName = faker.person.fullName();
+        const randomEmail = faker.internet.email();
+        const randomSubject = faker.lorem.sentence();
+        const randomMessage = faker.lorem.paragraph();
+
+        cy.visit('https://automationexercise.com');
+        cy.get(homePage).should('be.visible');
+        cy.get('a[href="/contact_us"]').click();
+
+        cy.get('h2.title.text-center').should('be.visible');
+        
+        cy.get('[data-qa="name"]').type(randomName);
+        cy.get('[data-qa="email"]').type(randomEmail);
+        cy.get('[data-qa="subject"]').type(randomSubject);
+        cy.get('[data-qa="message"]').type(randomMessage);
+
+        cy.get('input[name="upload_file"]').attachFile('test-file.jpeg');
+
+        cy.get('[data-qa="submit-button"]').click();
+        cy.on('window:alert', (text) => {
+            expect(text).to.equal('Success! Your details have been submitted successfully.');
+        });
+        cy.contains('Success! Your details have been submitted successfully.').should('be.visible');
+
+        cy.get('a.btn.btn-success[href="/"]').click();
+
+        cy.get(homePage).should('be.visible');
+    });
 });
