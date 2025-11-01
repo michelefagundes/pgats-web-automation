@@ -136,6 +136,7 @@ describe('Automation Exercise Test Suite', () => {
         cy.contains('Account Deleted!').should('be.visible');
         cy.get('[data-qa="continue-button"]').click();
     });
+
     it('logout user ', () => {
         const userName = Cypress.env('USER_NAME'); 
         const userEmail = Cypress.env('USER_EMAIL');
@@ -152,5 +153,20 @@ describe('Automation Exercise Test Suite', () => {
         cy.contains(`Logged in as ${userName}`).should('be.visible');
         cy.get(logoutBtn).click(); 
         cy.get(homePage).should('be.visible');    
+    });
+
+    it('try to register an existent user', () => {
+        const userName = Cypress.env('USER_NAME'); 
+        const userEmail = Cypress.env('USER_EMAIL');
+
+        cy.visit('https://automationexercise.com');
+        cy.get(homePage).should('be.visible');
+        cy.get(loginBtn).click();
+        cy.contains(newUserSignUpHeader).should('be.visible');
+
+        cy.get(registerUserName).type(userName);
+        cy.get(registerUserEmail).type(userEmail);
+        cy.get(signUpBtn).click();
+        cy.contains(emailAlreadyExistsHint).should('be.visible'); 
     });
 });
