@@ -6,12 +6,21 @@
   "scripts": {
     "test": "npx cypress run"
   },
-  "keywords": ["cypress", "automation", "testing"],
+  "keywords": [
+    "cypress",
+    "automation",
+    "testing"
+  ],
   "author": "Michele F",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
     "@cypress/webpack-preprocessor": "^6.0.0",
+    "@faker-js/faker": "^10.1.0",
+    "babel-loader": "^10.0.0",
     "cypress": "^12.0.0",
+    "cypress-file-upload": "^5.0.8",
     "cypress-multi-reporters": "^1.6.1",
     "dotenv": "^16.0.0",
     "mocha-junit-reporter": "^2.0.0",
